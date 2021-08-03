@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AnythingButCreed
 {
@@ -8,20 +9,29 @@ namespace AnythingButCreed
         static void Main(string[] args)
         {
             var goodSongs = new List<Song>();
-            var allSongs = new Song[12];
+            var allSongs = new List<Song>(5);
 
-            var TakeMeHigher = new Song("Creed", "Take Me Higher");
-            var LipsOfAnAngel = new Song("Hinder", "Lips of An Angel");
-            var SecondChance = new Song("Shinedown", "Second Chance");
-            var ItsNotOver = new Song("Daughtry", "It's Not Over");
-            var WithArmsWideOpen = new Song("Creed", "With Arms Wide Open");
-            var Rockstar = new Song("Post Malone", "Rockstart");
-            var Otherside = new Song("Red Hot Chili Peppers", "Otherside");
-            var NoOneKnows = new Song("Queens of the Stone Age", "No One Knows");
-            var MySacrifice = new Song("Creed", "My Sacrifice");
-            var Alive = new Song("Pearl Jam", "Alive");
-            var ManInTheBox = new Song("Alice in Chains", "Man in the Box");
-            var InBloom = new Song("Nirvana", "In Bloom");
+            allSongs.Add(new Song("Creed", "Take Me Higher"));
+            allSongs.Add(new Song("Hinder", "Lips of An Angel"));
+            allSongs.Add(new Song("Shinedown", "Second Chance"));
+            allSongs.Add(new Song("Daughtry", "It's Not Over"));
+            allSongs.Add(new Song("Creed", "With Arms Wide Open"));
+            allSongs.Add(new Song("Post Malone", "Rockstar"));
+            allSongs.Add(new Song("Red Hot Chili Peppers", "Otherside"));
+            allSongs.Add(new Song("Queens of the Stone Age", "No One Knows"));
+            allSongs.Add(new Song("Creed", "My Sacrifice"));
+            allSongs.Add(new Song("Pearl Jam", "Alive"));
+            allSongs.Add(new Song("Alice in Chains", "Man in the Box"));
+            allSongs.Add(new Song("Nirvana", "In Bloom"));
+
+            IEnumerable<Song> goodTunes = allSongs.Where(song => song.Artist != "Creed");
+
+            goodSongs.AddRange(goodTunes);
+
+            foreach(var tune in goodSongs)
+            {
+                Console.WriteLine($"{tune.Artist} : {tune.Name}");
+            }
         }
     }
 }
